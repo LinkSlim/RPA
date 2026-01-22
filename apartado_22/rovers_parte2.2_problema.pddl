@@ -2,13 +2,13 @@
 (:objects
 	general - Lander
 	colour high_res low_res - Mode
-	rover0 rover1 - Rover ; Anadido nuevo rover1
-	rover0store rover1store - Store ; Anadido nuevo store para rover1
+	rover0 rover1 - Rover ; Agrego nuevo rover1
+	rover0store rover1store - Store ; Agrego nuevo store para rover1
 	waypoint0 waypoint1 waypoint2 waypoint3 - Waypoint
-	camera0 camera1 - Camera ; Anadida nueva camara para rover1
+	camera0 camera1 - Camera ; Agrego nueva camara para rover1
 	objective0 objective1 - Objective
     b0 b1 b2 b3 b4 b5 - Blevel
-    bat0 bat1 - Battery ; Anadida nueva bateria para rover1
+    bat0 bat1 - Battery ; Agrego nueva bateria para rover1
 	)
 (:init
 	(visible waypoint1 waypoint0)
@@ -32,7 +32,7 @@
 	(at_lander general waypoint0)
 	(channel_free general)
 	(at rover0 waypoint3)
-	(at rover1 waypoint3) ; Posicion inicial del rover1
+	(at rover1 waypoint2) ; Posicion inicial del rover1
 	(available rover0)
 	(available rover1) ; rover1 disponible
 	(store_of rover0store rover0)
@@ -67,6 +67,7 @@
 	(supports camera0 colour)
 	(supports camera1 colour) ; camera1 soporta modo color
 	(supports camera0 high_res)
+	; Para que se saquen las fotografias de todos los objetivos en ambos modos
 	(supports camera1 high_res) ; camera1 soporta alta resolucion
 	(supports camera0 low_res) ; camera0 soporta baja resolucion
 	(supports camera1 low_res) ; camera1 soporta baja resolucion
@@ -89,9 +90,9 @@
    (communicated_soil_data waypoint2)
    (communicated_rock_data waypoint3)
    (communicated_image_data objective1 high_res)
-   (communicated_image_data objective1 low_res) ; Anadido goal, foto en baja resolucion de objetivo1
-   (communicated_image_data objective0 high_res) ; Anadido goal, foto en alta resolucion de objetivo0
-   (communicated_image_data objective0 low_res) ; Anadido goal, foto en baja resolucion de objetivo0
+   (communicated_image_data objective1 low_res) ; Agrego goal, foto en baja resolucion de objetivo1
+   (communicated_image_data objective0 high_res) ; Agrego goal, foto en alta resolucion de objetivo0
+   (communicated_image_data objective0 low_res) ; Agrego goal, foto en baja resolucion de objetivo0
    )
 )
 )
