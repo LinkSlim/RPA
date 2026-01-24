@@ -4,7 +4,7 @@
 	colour high_res low_res - Mode
 	rover0 - Rover
 	rover0store - Store
-	waypoint0 waypoint1 waypoint2 waypoint3 waypoint4 - Waypoint ; Añadimos waypoint4
+	waypoint0 waypoint1 waypoint2 waypoint3 waypoint4 - Waypoint ; Agregamos waypoint4
 	camera0 - Camera
 	objective0 objective1 - Objective
     b0 b1 b2 b3 b4 b5 - Blevel
@@ -23,16 +23,16 @@
 	(visible waypoint1 waypoint3)
 	(visible waypoint3 waypoint2)
 	(visible waypoint2 waypoint3)
-	(visible waypoint0 waypoint4) ; Añadimos visibilidad entre waypoint0 y waypoint4 para la transmision de datos
-	(visible waypoint4 waypoint0) ; Añadimos visibilidad entre waypoint4 y waypoint0 para la transmision de datos
+	(visible waypoint0 waypoint4) ; Agregamos visibilidad entre waypoint0 y waypoint4 para la transmision de datos
+	(visible waypoint4 waypoint0) ; Agregamos visibilidad entre waypoint4 y waypoint0 para la transmision de datos
 	(at_soil_sample waypoint0)
 	(at_rock_sample waypoint1)
 	(at_soil_sample waypoint2)
 	(at_rock_sample waypoint2)
 	(at_soil_sample waypoint3)
 	(at_rock_sample waypoint3)
-	(at_soil_sample waypoint4) ; Añadimos muestra de suelo en waypoint4
-	(at_rock_sample waypoint4) ; Añadimos muestra de roca en waypoint4
+	(at_soil_sample waypoint4) ; Agregamos muestra de suelo en waypoint4
+	(at_rock_sample waypoint4) ; Agregamos muestra de roca en waypoint4
 	(at_lander general waypoint0)
 	(channel_free general)
 	(at rover0 waypoint3)
@@ -48,10 +48,10 @@
 	(can_traverse rover0 waypoint1 waypoint3)
 	(can_traverse rover0 waypoint1 waypoint2)
 	(can_traverse rover0 waypoint2 waypoint1)
-	(can_traverse rover0 waypoint4 waypoint0) ; Añadimos capacidad de rover0 para ir entre waypoint0 y waypoint4
-	(can_traverse rover0 waypoint0 waypoint4) ; Añadimos capacidad de rover0 para ir entre waypoint4 y waypoint0
-	(can_traverse rover0 waypoint4 waypoint3) ; Añadimos capacidad de rover0 para ir entre waypoint3 y waypoint4
-	(can_traverse rover0 waypoint3 waypoint4) ; Añadimos capacidad de rover0 para ir entre waypoint4 y waypoint3
+	(can_traverse rover0 waypoint4 waypoint0) ; Agregamos capacidad de rover0 para ir entre waypoint0 y waypoint4
+	(can_traverse rover0 waypoint0 waypoint4) ; Agregamos capacidad de rover0 para ir entre waypoint4 y waypoint0
+	(can_traverse rover0 waypoint4 waypoint3) ; Agregamos capacidad de rover0 para ir entre waypoint3 y waypoint4
+	(can_traverse rover0 waypoint3 waypoint4) ; Agregamos capacidad de rover0 para ir entre waypoint4 y waypoint3
 	(on_board camera0 rover0)
 	(calibration_target camera0 objective1)
 	(supports camera0 colour)
