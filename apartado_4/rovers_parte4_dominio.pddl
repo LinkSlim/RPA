@@ -1,8 +1,8 @@
-(define (domain Rover-battery)
+(define (domain Rover-battery-2)
 (:requirements :typing :strips :equality)
 (:types rover waypoint store camera mode lander objective
        blevel battery
-       traction terrain ; Nuevos tipos [Requisito A y B]
+       traccion terreno ; Nuevos tipos de terreno
 )
 
 (:predicates (at ?x - rover ?y - waypoint) 
@@ -33,17 +33,17 @@
 			(battery_installed ?r - rover ?b - battery ?bmax ?bcur - blevel)
 			(lower ?l1 ?l2 - blevel)
 
-			; Nuevos predicados para Requisitos A, B y C
-			(has_traction ?r - rover ?t - traction)       ; El rover r tiene traccion t
-			(path_type ?x - waypoint ?y - waypoint ?t - terrain) ; El camino x->y es de tipo t
-			(compatible ?tr - traction ?te - terrain)     ; La traccion tr sirve para el terreno te
+			; Nuevos predicados
+			(has_traccion ?r - rover ?t - traccion)       ; Equipar traccion a un rover
+			(path_type ?x - waypoint ?y - waypoint ?t - terreno) ; Establecer tipo de camino a un waypoint
+			(compatible ?tr - traccion ?te - terreno)     ; Traccion compatible con un tipo de terreno
 )
 
-	
+;Modificamos la accion para que contemple los nuevos parametros traccion y terreno
 (:action navigate-bat
 	:parameters (?r - rover ?y - waypoint ?z - waypoint
 				?b - battery ?bmax ?bcur ?bnext - blevel
-				?tr - traction ?te - terrain ; Nuevos parametros
+				?tr - traccion ?te - terreno ; Nuevos parametros traccion y terreno
 				) 
 	:precondition (and 
 					(available ?r) 
@@ -52,10 +52,10 @@
 					(battery_installed ?r ?b ?bmax ?bcur)
 					(lower ?bnext ?bcur)
 
-					; Nueva logica de movimiento
-					(has_traction ?r ?tr)          ; El rover tiene cierta traccion
-					(path_type ?y ?z ?te)          ; El camino es de cierto terreno
-					(compatible ?tr ?te)           ; Son compatibles
+					; Nueva precondiciones
+					(has_traccion ?r ?tr)          ; El rover tiene tiene que tener equpida la traccion para el tipo de terreno
+					(path_type ?y ?z ?te)          ; El camino de un waypoint a otro tiene que ser del tipo de terreno
+					(compatible ?tr ?te)           ; La traccion ha de ser compatible con el terreno
 	)
 	:effect (and 
 				(not (at ?r ?y)) 
@@ -65,18 +65,18 @@
 	)
 )
 
-(:action tow
+(:action remolque
 :parameters (?r1 - rover ?r2 - rover ?y - waypoint ?z - waypoint
              ?b - battery ?bmax ?bcur ?bnext - blevel
-             ?tr - traction ?te - terrain)
+             ?tr - traccion ?te - terreno)
 :precondition (and 
     (available ?r1) (available ?r2)
-    (at ?r1 ?y) (at ?r2 ?y)        ; Ambos deben empezar en el mismo punto
-    (not (= ?r1 ?r2))              ; No puede remolcarse a si mismo
+    (at ?r1 ?y) (at ?r2 ?y)        ; Los rovers deben empezar en el mismo waypoint
+    (not (= ?r1 ?r2))              ; Los rovers pasados no pueden ser el mismo
     (visible ?y ?z)
     
-    ; Restricciones de terreno solo para el rover que remolca (?r1)
-    (has_traction ?r1 ?tr)
+    ; El rover (?r1) que remolca ha de poder transitar por el camino
+    (has_traccion ?r1 ?tr)
     (path_type ?y ?z ?te)
     (compatible ?tr ?te)
     
