@@ -25,6 +25,18 @@
         )
     )
 
+    (:action transportar_madera
+        :parameters ( ?x1 - persona ?x2 - lugar ?x3 - lugar ?x4 - madera)
+        :precondition (and
+            (persona_en ?x1 ?x2) (madera_en ?x4 ?x2) (camino_entre ?x2 ?x3)
+            (not (cansada ?x1))
+        )
+        :effect (and (persona_en ?x1 ?x3) (madera_en ?x4 ?x3)
+            (not (persona_en ?x1 ?x2)) (not (madera_en ?x4 ?x2))
+            (cansada ?x1)
+        )
+    )
+
     (:action dormir
         :parameters ( ?x1 - persona ?x2 - lugar)
         :precondition (and
