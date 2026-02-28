@@ -32,8 +32,9 @@
 
     (:goal
         (and
-            (persona_en persona1 lugar3)
-            (persona_en persona0 lugar3)
+            (persona_en persona1 lugar4)
+            (persona_en persona0 lugar4)
+            (refugio_en lugar4)
         )
     )
 )
