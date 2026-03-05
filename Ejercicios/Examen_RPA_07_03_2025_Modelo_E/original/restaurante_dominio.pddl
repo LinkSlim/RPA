@@ -53,5 +53,8 @@
   (:action mover_bandeja
     :parameters (?t - bandeja ?l1 ?l2 - lugar)
     :precondition (and (en ?t ?l1))
+          (or (adyacente ?l1 ?l2) (adyacente ?l2 ?l1)) 
+    :effect (and (not (en ?t ?l1))
+                 (en ?t ?l2)))
   )
 )
